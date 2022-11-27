@@ -312,7 +312,7 @@ namespace Tetractic.Formats.PalmPdb
                     else if (_sortInfoLength >= 0)
                     {
                         _state = State.SortInfo;
-                    }    
+                    }
                     else if (_writtenDataCount == 0)
                     {
                         Debug.Assert(_writtenEntryCount == _recordCount);
@@ -329,7 +329,7 @@ namespace Tetractic.Formats.PalmPdb
             {
                 _state = State.Error;
                 throw;
-            }            
+            }
         }
 
         /// <summary>
