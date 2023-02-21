@@ -14,7 +14,7 @@ namespace Tetractic.Formats.PalmPdb.Dump
 {
     internal static class Hex
     {
-        private static readonly TextWriter _bufferedConsoleOut = new StreamWriter(new BufferedStream(Console.OpenStandardOutput(), 0x10000), Console.OutputEncoding);
+        private static readonly TextWriter _bufferedConsoleOut = new StreamWriter(new BufferedStream(Console.OpenStandardOutput(), 0x10000), new ConsoleEncoding(Console.OutputEncoding));
 
         /// <exception cref="IOException"/>
         public static void Dump(byte[] bytes, string indent = "", bool writeOffset = false)
