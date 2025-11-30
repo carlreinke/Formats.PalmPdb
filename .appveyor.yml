@@ -15,10 +15,12 @@ before_build:
 test_script:
 - pwsh: dotnet test -c $Env:CONFIGURATION /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=bin\$Env:CONFIGURATION\coverage.xml
 after_test:
-- pwsh: dotnet tool install --global Codecov.Tool --version 1.13.0
-- pwsh: codecov --file *\bin\$Env:CONFIGURATION\coverage.xml --flag $Env:CONFIGURATION
+- pwsh: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.5.0
+- pwsh: reportgenerator -reports:*\bin\$Env:CONFIGURATION\coverage.xml -targetdir:artifacts\coverage\
 artifacts:
 - path: '**\*.nupkg'
   name: NuGet package
 - path: '**\*.snupkg'
   name: NuGet symbols package
+- path: 'artifacts\coverage'
+  name: Code coverage report
