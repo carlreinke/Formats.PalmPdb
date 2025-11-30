@@ -301,10 +301,10 @@ namespace Tetractic.Formats.PalmPdb.Tests
                     long position1 = dataStream.Position;
 
                     Assert.Equal(1, result0);
-                    Assert.Equal(new byte[] { 1 }, data0);
+                    Assert.Equal([1], data0);
                     Assert.Equal(1, position0);
                     Assert.Equal(1, result1);
-                    Assert.Equal(new byte[] { 2 }, data1);
+                    Assert.Equal([2], data1);
                     Assert.Equal(2, position1);
                 }
             }
@@ -315,7 +315,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [InlineData(1, 1, new byte[] { 1 }, 1)]
         [InlineData(3, 3, new byte[] { 1, 2, 3 }, 3)]
         [InlineData(4, 3, new byte[] { 1, 2, 3 }, 3)]
-        public static void Read_PositionBeforeEndOfFile2_ProducesExpectedResults(int count, int expecteResult, byte[] expecteData, long expectedPosition)
+        public static void Read_PositionBeforeEndOfFile2_ProducesExpectedResults(int count, int expectedResult, byte[] expectedData, long expectedPosition)
         {
             using (var stream = new MemoryStream(_pdbBytes))
             using (var pdbFile = new PdbFile(stream))
@@ -329,8 +329,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
                     Array.Resize(ref data, result);
                     long position = dataStream.Position;
 
-                    Assert.Equal(expecteResult, result);
-                    Assert.Equal(expecteData, data);
+                    Assert.Equal(expectedResult, result);
+                    Assert.Equal(expectedData, data);
                     Assert.Equal(expectedPosition, position);
                 }
             }
@@ -460,7 +460,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 var record = pdbFile.Records[0];
 
                 using (var dataStream = record.OpenData(FileAccess.Read))
-                    _ = Assert.Throws<NotSupportedException>(() => dataStream.Write(Array.Empty<byte>(), 0, 0));
+                    _ = Assert.Throws<NotSupportedException>(() => dataStream.Write([], 0, 0));
             }
         }
 
@@ -487,12 +487,12 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 var record0 = pdbFile.AddRecord();
 
                 using (var dataStream = record0.OpenData(FileAccess.Write))
-                    dataStream.Write(new byte[] { 1, 2, 3 });
+                    dataStream.Write([1, 2, 3]);
 
                 var record1 = pdbFile.AddRecord();
 
                 using (var dataStream = record1.OpenData(FileAccess.Write))
-                    dataStream.Write(new byte[] { 4, 5, 6 });
+                    dataStream.Write([4, 5, 6]);
 
                 pdbFile.WriteTo(stream);
 

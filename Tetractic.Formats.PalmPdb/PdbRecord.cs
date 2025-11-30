@@ -141,8 +141,7 @@ namespace Tetractic.Formats.PalmPdb
             if (_disposed)
                 return;
 
-            if (_dataStream != null)
-                _dataStream.Dispose();
+            _dataStream?.Dispose();
 
             _disposed = true;
         }

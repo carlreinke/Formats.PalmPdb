@@ -15,8 +15,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
 {
     public static class PdbRecordTests
     {
-        private static readonly byte[] _bytes = new byte[]
-        {
+        private static readonly byte[] _bytes =
+        [
             // Name
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -38,7 +38,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
             0x00, 0x00, 0x00, 0x56, 0x00, 0x00, 0x00, 0x00,
             // ...
             0x01, 0x02, 0x03,
-        };
+        ];
 
         [Fact]
         public static void OriginalDataOffset_Always_ReturnsExpectedValue()
@@ -200,7 +200,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 var record = pdbFile.AddRecord();
 
                 using (var dataStream = record.OpenData(FileAccess.Write))
-                    dataStream.Write(new byte[] { 1, 2, 3 });
+                    dataStream.Write([1, 2, 3]);
 
                 pdbFile.WriteTo(stream);
 
@@ -216,7 +216,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 var record = Assert.Single(pdbFile.Records);
 
                 using (var dataStream = record.OpenData(access))
-                    dataStream.Write(new byte[] { 4, 5, 6 });
+                    dataStream.Write([4, 5, 6]);
 
                 using (var tempStream = new MemoryStream())
                 {

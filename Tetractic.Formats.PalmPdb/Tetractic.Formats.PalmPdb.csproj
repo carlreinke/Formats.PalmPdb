@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <Features>strict</Features>
     <Nullable>enable</Nullable>
+    <WarningLevel>9999</WarningLevel>
 
-    <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>Recommended</AnalysisMode>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableCodeStyleSeverity>true</EnableCodeStyleSeverity>
 
     <VersionPrefix>1.0.2</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
@@ -57,16 +58,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\CodeAnalysisDictionary.xml" Link="CodeAnalysisDictionary.xml" />
     <AdditionalFiles Include="ExceptionAdjustments.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.3">
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -75,10 +71,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Tetractic.CodeAnalysis.ExceptionAnalyzers" Version="1.4.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Text.Analyzers" Version="3.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

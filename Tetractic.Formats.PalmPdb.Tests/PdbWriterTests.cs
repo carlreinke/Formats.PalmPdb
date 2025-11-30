@@ -17,7 +17,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
 {
     public static class PdbWriterTests
     {
-        private static readonly string _emptyName = new string('\0', 32);
+        private static readonly string _emptyName = new('\0', 32);
 
         [Fact]
         public static void Constructor_StreamIsNull_ThrowsArgumentNullException()
@@ -573,7 +573,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
             }
         }
 
-        public static readonly TheoryData<byte[]?, byte[]?, byte[]?, byte[]?> WriteRecordEntry_VariousParts_Data = new TheoryData<byte[]?, byte[]?, byte[]?, byte[]?>()
+        public static readonly TheoryData<byte[]?, byte[]?, byte[]?, byte[]?> WriteRecordEntry_VariousParts_Data = new()
         {
             { null, null, null, null },
             { new byte[] { 0x12 }, null, null, null },
@@ -598,7 +598,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 recordDatasList.Add(record0Data);
             if (record1Data != null)
                 recordDatasList.Add(record1Data);
-            byte[][] recordDatas = recordDatasList.ToArray();
+            byte[][] recordDatas = [.. recordDatasList];
 
             using (var stream = new MemoryStream())
             {
@@ -657,7 +657,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 recordDatasList.Add(record0Data);
             if (record1Data != null)
                 recordDatasList.Add(record1Data);
-            byte[][] recordDatas = recordDatasList.ToArray();
+            byte[][] recordDatas = [.. recordDatasList];
 
             using (var stream = new MemoryStream())
             {
@@ -716,7 +716,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 recordDatasList.Add(record0Data);
             if (record1Data != null)
                 recordDatasList.Add(record1Data);
-            byte[][] recordDatas = recordDatasList.ToArray();
+            byte[][] recordDatas = [.. recordDatasList];
 
             using (var stream = new MemoryStream())
             {
@@ -775,7 +775,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 recordDatasList.Add(record0Data);
             if (record1Data != null)
                 recordDatasList.Add(record1Data);
-            byte[][] recordDatas = recordDatasList.ToArray();
+            byte[][] recordDatas = [.. recordDatasList];
 
             using (var stream = new MemoryStream())
             {
@@ -908,7 +908,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                     uniqueIdSeed: 0,
                     recordCount: 1);
 
-                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteAppInfo(Array.Empty<byte>()));
+                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteAppInfo([]));
 
                 Assert.Equal("The length does not match the length specified when writing the header.", ex.Message);
             }
@@ -973,7 +973,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                     uniqueIdSeed: 0,
                     recordCount: 1);
 
-                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteSortInfo(Array.Empty<byte>()));
+                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteSortInfo([]));
 
                 Assert.Equal("The length does not match the length specified when writing the header.", ex.Message);
             }
@@ -1089,7 +1089,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                     uniqueIdSeed: 0,
                     recordCount: 1);
 
-                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteRecordData(Array.Empty<byte>()));
+                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteRecordData([]));
 
                 Assert.Equal("The stream must support seeking to defer writing the record entries.", ex.Message);
             }
@@ -1100,7 +1100,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
         {
             using (var writer = new PdbWriter(Stream.Null))
             {
-                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteRecordData(Array.Empty<byte>()));
+                var ex = Assert.Throws<InvalidOperationException>(() => writer.WriteRecordData([]));
 
                 Assert.Equal("The writer is not in a state that allows writing record data.", ex.Message);
             }

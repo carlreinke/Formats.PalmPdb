@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32519.379
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11217.181 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D1F1AED-15AB-4678-9132-55CDF53FDBA5}"
 	ProjectSection(SolutionItems) = preProject
+		.dictionary = .dictionary
 		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tetractic.Formats.PalmPdb", "Tetractic.Formats.PalmPdb\Tetractic.Formats.PalmPdb.csproj", "{6AFC560D-BB83-42EE-85E1-C06430E2C3E8}"

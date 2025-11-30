@@ -19,8 +19,7 @@ namespace Tetractic.Formats.PalmPdb.Dump
         /// <exception cref="ArgumentNullException"/>
         public ConsoleEncoding(Encoding encoding)
         {
-            if (encoding is null)
-                throw new ArgumentNullException(nameof(encoding));
+            ArgumentNullException.ThrowIfNull(encoding);
 
             _encoding = encoding;
         }
@@ -43,7 +42,7 @@ namespace Tetractic.Formats.PalmPdb.Dump
 
         public override bool IsSingleByte => _encoding.IsSingleByte;
 
-        public override ReadOnlySpan<byte> Preamble => ReadOnlySpan<byte>.Empty;
+        public override ReadOnlySpan<byte> Preamble => [];
 
         public override string WebName => _encoding.WebName;
 
@@ -89,7 +88,7 @@ namespace Tetractic.Formats.PalmPdb.Dump
 
         public override Encoder GetEncoder() => _encoding.GetEncoder();
 
-        public override byte[] GetPreamble() => Array.Empty<byte>();
+        public override byte[] GetPreamble() => [];
 
         public override int GetMaxByteCount(int charCount) => _encoding.GetMaxByteCount(charCount);
 

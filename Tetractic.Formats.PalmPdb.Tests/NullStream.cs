@@ -30,8 +30,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
             get => _position;
             set
             {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfNegative(value);
 
                 _position = value;
             }
@@ -43,12 +42,9 @@ namespace Tetractic.Formats.PalmPdb.Tests
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            if (buffer is null)
-                throw new ArgumentNullException(nameof(buffer));
-            if (offset < 0)
-                throw new ArgumentOutOfRangeException(nameof(offset));
-            if (count < 0)
-                throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentNullException.ThrowIfNull(buffer);
+            ArgumentOutOfRangeException.ThrowIfNegative(offset);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (buffer.Length - count < offset)
                 throw new ArgumentException("Invalid range in array.");
 
@@ -94,20 +90,16 @@ namespace Tetractic.Formats.PalmPdb.Tests
 
         public override void SetLength(long value)
         {
-            if (value < 0)
-                throw new ArgumentOutOfRangeException(nameof(value));
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
 
             _length = value;
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
-            if (buffer is null)
-                throw new ArgumentNullException(nameof(buffer));
-            if (offset < 0)
-                throw new ArgumentOutOfRangeException(nameof(offset));
-            if (count < 0)
-                throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentNullException.ThrowIfNull(buffer);
+            ArgumentOutOfRangeException.ThrowIfNegative(offset);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (buffer.Length - count < offset)
                 throw new ArgumentException("Invalid range in array.");
 

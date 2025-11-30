@@ -51,7 +51,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_StreamIsNotPositionedAtZero_ThrowsInvalidOperationException()
         {
-            using (var stream = new MemoryStream(new byte[] { 0x00 }))
+            using (var stream = new MemoryStream([0x00]))
             {
                 _ = stream.ReadByte();
 
@@ -91,8 +91,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_ResourceDatabase_ThrowsNotSupportedException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -108,7 +108,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 // CreatorId, UniqueIdSeed
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -121,8 +121,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_MultipleRecordLists_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -140,7 +140,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 // NextRecordListOffset
                 0x00, 0x00, 0x01, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -153,8 +153,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_RecordDataOverlapsRecordEntries_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -174,7 +174,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
                 // Record: DataOffset, AttributesAndCategory, UniqueId
                 0x00, 0x00, 0x00, 0x55, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -187,8 +187,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_RecordDataOverlapsEndOfFile_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -208,7 +208,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
                 // Record: DataOffset, AttributesAndCategory, UniqueId
                 0x00, 0x00, 0x00, 0x57, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -221,8 +221,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_RecordDataOverlapsRecordData_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -244,7 +244,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x00,
                 // Record: DataOffset, AttributesAndCategory, UniqueId
                 0x00, 0x00, 0x00, 0x5E, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -257,8 +257,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_AppInfoOverlapsRecordEntries_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -278,7 +278,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
                 // Record: DataOffset, AttributesAndCategory, UniqueId
                 0x00, 0x00, 0x00, 0x56, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -291,8 +291,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_AppInfoOverlapsEndOfFile_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -310,7 +310,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 // NextRecordListOffset, RecordCount
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -323,8 +323,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_AppInfoOverlapsSortInfo_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -344,7 +344,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 // ...
                 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -357,8 +357,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_SortInfoOverlapsRecordEntries_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -378,7 +378,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
                 // Record: DataOffset, AttributesAndCategory, UniqueId
                 0x00, 0x00, 0x00, 0x56, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -391,8 +391,8 @@ namespace Tetractic.Formats.PalmPdb.Tests
         [Fact]
         public static void Constructor_SortInfoOverlapsEndOfFile_ThrowsInvalidDataException()
         {
-            byte[] bytes = new byte[]
-            {
+            byte[] bytes =
+            [
                 // Name
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -410,7 +410,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 // NextRecordListOffset, RecordCount
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             using (var stream = new MemoryStream(bytes))
             {
@@ -436,14 +436,14 @@ namespace Tetractic.Formats.PalmPdb.Tests
         // TODO: OriginalSortInfoOffset_...
 
         [Fact]
-        public static void AddRecord_MaximumNumberOfRecords_ThrowsInvaldOperationException()
+        public static void AddRecord_MaximumNumberOfRecords_ThrowsInvalidOperationException()
         {
             using (var pdbFile = new PdbFile())
             {
                 for (int i = 0; i < ushort.MaxValue; ++i)
                     _ = pdbFile.AddRecord();
 
-                var ex = Assert.Throws<InvalidOperationException>(() => pdbFile.AddRecord());
+                var ex = Assert.Throws<InvalidOperationException>(pdbFile.AddRecord);
 
                 Assert.Equal("Database has maximum number of records.", ex.Message);
             }
@@ -573,7 +573,7 @@ namespace Tetractic.Formats.PalmPdb.Tests
                 recordDatasList.Add(record0Data);
             if (record1Data != null)
                 recordDatasList.Add(record1Data);
-            byte[][] recordDatas = recordDatasList.ToArray();
+            byte[][] recordDatas = [.. recordDatasList];
 
             using (var stream = new MemoryStream())
             {
